@@ -11,8 +11,8 @@ namespace OnlineOrderManagementSystem.Repository.IRepository.Sal
     public interface IOrderRepository
     {
         // Define methods for order management
-        Task<IEnumerable<Order>> GetAllOrdersAsync(GetOrdersDTO dto);
-        Task<Order?> GetOrderByIdAsync(int orderId);
+        Task<IEnumerable<OrderResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto);
+        Task<OrderResultDTO?> GetOrderByIdAsync(int orderId);
         void CreateOrderAsync(Order order);
         void UpdateOrderAsync(Order order);
         Task DeleteOrderAsync(int orderId);

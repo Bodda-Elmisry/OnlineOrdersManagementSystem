@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using OnlineOrderManagementSystem.Domain.DTOs.Custom;
 using OnlineOrderManagementSystem.Domain.DTOs.Sel;
+using OnlineOrderManagementSystem.Domain.Enums;
 using OnlineOrderManagementSystem.Domain.Models.Cust;
 using OnlineOrderManagementSystem.Domain.Models.sal;
 using OnlineOrderManagementSystem.Inferastructure.Data;
@@ -41,7 +42,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             context.Orders.Remove(order);
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync(GetOrdersDTO dto)
+        public async Task<IEnumerable<OrderResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto)
         {
             int pagesize = this.appSettings.PageSize != null ? this.appSettings.PageSize.Value : 30;
 
@@ -55,7 +56,13 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             query = dto.orderDateMax != null ? query.Where(o => o.OrderDate <= dto.orderDateMax.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59)) : query;
             query = dto.status != null ? query.Where(o => o.Status == dto.status) : query;
 
-            return await query
+            return await query.Select(o=> new OrderResultDTO(
+                                                o.Id,
+                                                o.CustomerId,
+                                                o.Customer.Name,
+                                                o.OrderDate,
+                                                OrderStatusEnumHelper.GetDescription(o.Status)
+                                                ))
                             .Skip((pagenumber - 1) * pagesize)
                             .Take(pagesize)
                             .ToListAsync();
@@ -63,9 +70,20 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
 
         }
 
-        public async Task<Order?> GetOrderByIdAsync(int orderId)
+        public async Task<OrderResultDTO?> GetOrderByIdAsync(int orderId)
         {
-            return await context.Orders.FirstOrDefaultAsync(o=> o.Id == orderId);
+            var order = await context.Orders.FirstOrDefaultAsync(o=> o.Id == orderId);
+            if(order == null)
+            {
+                return null;
+            }
+            return new OrderResultDTO(
+                order.Id,
+                order.CustomerId,
+                order.Customer.Name,
+                order.OrderDate,
+                OrderStatusEnumHelper.GetDescription(order.Status)
+                );
         }
 
         public void UpdateOrderAsync(Order order)

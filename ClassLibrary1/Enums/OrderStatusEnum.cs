@@ -14,4 +14,20 @@ namespace OnlineOrderManagementSystem.Domain.Enums
         delevered = 4,
         canceled = 5,
     }
+
+    public class OrderStatusEnumHelper
+    {
+        public static string GetDescription(OrderStatusEnum status)
+        {
+            return status switch
+            {
+                OrderStatusEnum.orderd => "Ordered",
+                OrderStatusEnum.inPackaging => "In Packaging",
+                OrderStatusEnum.inShipping => "In Shipping",
+                OrderStatusEnum.delevered => "Delivered",
+                OrderStatusEnum.canceled => "Canceled",
+                _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
+            };
+        }
+    }
 }
