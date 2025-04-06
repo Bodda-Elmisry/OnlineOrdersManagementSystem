@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineOrderManagementSystem.Domain.Enums;
+using OnlineOrderManagementSystem.Domain.Models.Cust;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,8 @@ namespace OnlineOrderManagementSystem.Domain.Models.sal
     {
         public long CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
-        public int Status { get; set; }
+        public OrderStatusEnum Status { get; set; }
+
+        public Customer Customer { get; set; }
     }
 }

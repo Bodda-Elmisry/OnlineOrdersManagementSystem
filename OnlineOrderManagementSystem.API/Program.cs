@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineOrderManagementSystem.Domain.DTOs.Custom;
 using OnlineOrderManagementSystem.Inferastructure.Configrations;
 using OnlineOrderManagementSystem.Inferastructure.Data;
 
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
                             ).EnableSensitiveDataLogging().LogTo(Console.WriteLine, LogLevel.Information),
                             ServiceLifetime.Scoped
                     );
+
+builder.Services.Configure<AppSettingDTO>(builder.Configuration.GetSection("AppSettings"));
+
 
 DependencyInjectionConfigration.ConfigerRepos(builder.Services);
 DependencyInjectionConfigration.ConfigerServices(builder.Services);

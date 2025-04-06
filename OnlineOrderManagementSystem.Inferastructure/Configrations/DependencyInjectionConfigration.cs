@@ -28,6 +28,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         private static void ConfigerSalRepos(IServiceCollection services)
         {
             services.AddScoped<IProductRepoistory, ProductRepoistory>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
         }
 

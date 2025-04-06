@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineOrderManagementSystem.Domain.Enums
 {
-    public enum ProductStatusEnum
+    public enum OrderStatusEnum
     {
         orderd = 1,
         inPackaging = 2,
