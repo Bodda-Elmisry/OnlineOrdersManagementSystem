@@ -1,0 +1,15 @@
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\bin\Debug\net8.0\OnlineOrderManagementSystem.Repository.deps.json
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\bin\Debug\net8.0\OnlineOrderManagementSystem.Repository.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\bin\Debug\net8.0\OnlineOrderManagementSystem.Repository.pdb
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.pdb
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.csproj.AssemblyReference.cache
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.AssemblyInfoInputs.cache
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.AssemblyInfo.cs
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.csproj.CoreCompileInputs.cache
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOr.BC8A80AA.Up2Date
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\refint\OnlineOrderManagementSystem.Repository.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.pdb
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\ref\OnlineOrderManagementSystem.Repository.dll

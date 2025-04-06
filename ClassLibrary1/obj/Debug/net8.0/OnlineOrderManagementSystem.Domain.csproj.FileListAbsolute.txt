@@ -1,0 +1,12 @@
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.deps.json
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.dll
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.pdb
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.AssemblyInfoInputs.cache
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.AssemblyInfo.cs
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.csproj.CoreCompileInputs.cache
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.dll
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\refint\OnlineOrderManagementSystem.Domain.dll
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.pdb
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\ref\OnlineOrderManagementSystem.Domain.dll
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.csproj.AssemblyReference.cache
