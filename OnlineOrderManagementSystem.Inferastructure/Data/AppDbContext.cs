@@ -35,11 +35,13 @@ namespace OnlineOrderManagementSystem.Inferastructure.Data
             modelBuilder.ApplyConfiguration(new ProductConfigration());
             modelBuilder.ApplyConfiguration(new OrderConfigration());
             modelBuilder.ApplyConfiguration(new OrderItemConfigration());
+            modelBuilder.ApplyConfiguration(new OrderStatusHistoryConfigration());
         }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderStatusHistory> OrderStatusHistory { get; set; }
     }
 }
