@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Cust;
+using OnlineOrderManagementSystem.Inferastructure.Repositories.Sal;
 using OnlineOrderManagementSystem.Repository.IRepository.Cust;
+using OnlineOrderManagementSystem.Repository.IRepository.Sal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,8 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
 
         private static void ConfigerSalRepos(IServiceCollection services)
         {
-            
+            services.AddScoped<IProductRepoistory, ProductRepoistory>();
+
         }
 
         #endregion
