@@ -33,9 +33,11 @@ namespace OnlineOrderManagementSystem.Inferastructure.Data
         private void ApplySalConfigrateions(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProductConfigration());
+            modelBuilder.ApplyConfiguration(new OrderConfigration());
         }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
