@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineOrderManagementSystem.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e481461ba5958cf503f6d1bc514304f8cbb0fefb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82be84335071f53f02e2ebcc71cc9311fc2297e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineOrderManagementSystem.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineOrderManagementSystem.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
