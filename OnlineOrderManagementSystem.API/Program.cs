@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineOrderManagementSystem.Inferastructure.Configrations;
 using OnlineOrderManagementSystem.Inferastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
                             ).EnableSensitiveDataLogging().LogTo(Console.WriteLine, LogLevel.Information),
                             ServiceLifetime.Scoped
                     );
+
+DependencyInjectionConfigration.ConfigerRepos(builder.Services);
+DependencyInjectionConfigration.ConfigerServices(builder.Services);
+DependencyInjectionConfigration.ConfigerUOWs(builder.Services);
 
 
 var app = builder.Build();
