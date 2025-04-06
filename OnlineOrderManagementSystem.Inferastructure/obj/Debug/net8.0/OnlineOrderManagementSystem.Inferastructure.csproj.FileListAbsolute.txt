@@ -17,3 +17,4 @@ D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Inferastructu
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Inferastructure\obj\Debug\net8.0\OnlineOrderManagementSystem.Inferastructure.pdb
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Inferastructure\obj\Debug\net8.0\OnlineOrderManagementSystem.Inferastructure.genruntimeconfig.cache
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Inferastructure\obj\Debug\net8.0\ref\OnlineOrderManagementSystem.Inferastructure.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Inferastructure\obj\Debug\net8.0\OnlineOrderManagementSystem.Inferastructure.sourcelink.json

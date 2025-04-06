@@ -12,5 +12,8 @@ namespace OnlineOrderManagementSystem.Domain.Enums
         email = 200,
         address = 500,
         phoneNumber = 15,
+        description = 1000,
+        pricePercision = 18,
+        priceScale = 2,
     }
 }

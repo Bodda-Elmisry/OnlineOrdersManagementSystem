@@ -10,3 +10,4 @@ D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\refint\Onl
 D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.pdb
 D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\ref\OnlineOrderManagementSystem.Domain.dll
 D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.csproj.AssemblyReference.cache
+D:\test\C#\OnlineOrderManagementSystem\ClassLibrary1\obj\Debug\net8.0\OnlineOrderManagementSystem.Domain.sourcelink.json

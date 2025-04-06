@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineOrderManagementSystem.Inferastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b00cf12416aecf7025a03a5d68722d68e761514")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b146aba1381ca8f4ca33231e42d7587db6554f54")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineOrderManagementSystem.Inferastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineOrderManagementSystem.Inferastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -13,3 +13,4 @@ D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\ob
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\refint\OnlineOrderManagementSystem.Repository.dll
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.pdb
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\ref\OnlineOrderManagementSystem.Repository.dll
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.Repository\obj\Debug\net8.0\OnlineOrderManagementSystem.Repository.sourcelink.json

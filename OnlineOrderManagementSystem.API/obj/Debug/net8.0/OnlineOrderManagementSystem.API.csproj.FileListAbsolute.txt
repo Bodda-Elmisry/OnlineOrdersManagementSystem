@@ -148,3 +148,4 @@ D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.API\bin\Debug
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.API\bin\Debug\net8.0\OnlineOrderManagementSystem.Inferastructure.pdb
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.API\bin\Debug\net8.0\OnlineOrderManagementSystem.Repository.pdb
 D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.API\bin\Debug\net8.0\OnlineOrderManagementSystem.Domain.pdb
+D:\test\C#\OnlineOrderManagementSystem\OnlineOrderManagementSystem.API\obj\Debug\net8.0\OnlineOrderManagementSystem.API.sourcelink.json
