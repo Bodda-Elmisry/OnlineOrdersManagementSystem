@@ -1,9 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Cust;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Sal;
+using OnlineOrderManagementSystem.Inferastructure.Services.Cust;
+using OnlineOrderManagementSystem.Inferastructure.Services.Sal;
 using OnlineOrderManagementSystem.Inferastructure.UnitOfWork;
 using OnlineOrderManagementSystem.Repository.IRepository.Cust;
 using OnlineOrderManagementSystem.Repository.IRepository.Sal;
+using OnlineOrderManagementSystem.Repository.IServices.Cust;
+using OnlineOrderManagementSystem.Repository.IServices.Sal;
 using OnlineOrderManagementSystem.Repository.IUnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -66,10 +70,12 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
 
         private static void ConfigerCustServices(IServiceCollection services)
         {
+            services.AddScoped<ICustomerService, CustomerService>();
         }
 
         private static void ConfigerSalServices(IServiceCollection services)
         {
+            services.AddScoped<IProductService, ProductService>();
 
         }
 

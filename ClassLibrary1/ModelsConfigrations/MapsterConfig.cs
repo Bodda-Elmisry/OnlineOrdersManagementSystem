@@ -1,5 +1,7 @@
 ﻿using Mapster;
+using OnlineOrderManagementSystem.Domain.DTOs.Cust;
 using OnlineOrderManagementSystem.Domain.DTOs.Sel;
+using OnlineOrderManagementSystem.Domain.Models.Cust;
 using OnlineOrderManagementSystem.Domain.Models.sal;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,12 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations
                 .NewConfig()
                 .Map(dest => dest.OrderDate, src => src.Order.OrderDate) // Map nested property
                 .Map(dest => dest.Status, src => src.Status.ToString());  // Map enum to string
+
+            TypeAdapterConfig<AddCustomerDTO, Customer>
+                .NewConfig();
+
+            TypeAdapterConfig<AddProductDTO, Product>
+                .NewConfig();
         }
     }
 }
