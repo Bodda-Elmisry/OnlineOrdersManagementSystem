@@ -30,24 +30,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
             services.AddScoped<IProductRepoistory, ProductRepoistory>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
-
-        }
-
-        #endregion
-
-        #region Services
-        public static void ConfigerServices(IServiceCollection services)
-        {
-            ConfigerCustServices(services);
-            ConfigerSalServices(services);
-        }
-
-        private static void ConfigerCustServices(IServiceCollection services)
-        {
-        }
-
-        private static void ConfigerSalServices(IServiceCollection services)
-        {
+            services.AddScoped<IOrderStatusHistoryRepository, OrderStatusHistoryRepository>();
 
         }
 
@@ -65,6 +48,24 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         }
 
         private static void ConfigerSalUOWs(IServiceCollection services)
+        {
+
+        }
+
+        #endregion
+
+        #region Services
+        public static void ConfigerServices(IServiceCollection services)
+        {
+            ConfigerCustServices(services);
+            ConfigerSalServices(services);
+        }
+
+        private static void ConfigerCustServices(IServiceCollection services)
+        {
+        }
+
+        private static void ConfigerSalServices(IServiceCollection services)
         {
 
         }

@@ -72,11 +72,12 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             //                .Take(pagesize)
             //                .ToListAsync();
 
-            return await query.ProjectToType<OrderResultDTO>()
-                .OrderBy(o=> o.OrderDate)
+            var orders = await query.OrderBy(o=> o.OrderDate)
                 .Skip((pagenumber - 1) * pagesize)
                 .Take(pagesize)
                 .ToListAsync();
+
+            return mapper.Map<IEnumerable<OrderResultDTO>>(orders);
 
 
         }

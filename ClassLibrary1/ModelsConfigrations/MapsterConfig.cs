@@ -23,6 +23,11 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations
                 .NewConfig()
                 .Map(dest => dest.ProductName, src => src.Product.Name) // Map nested property
                 .Map(dest => dest.OrderDate, src => src.Order.OrderDate); // Map nested property
+
+            TypeAdapterConfig<OrderStatusHistory, OrderStatusHistoryResultDTO>
+                .NewConfig()
+                .Map(dest => dest.OrderDate, src => src.Order.OrderDate) // Map nested property
+                .Map(dest => dest.Status, src => src.Status.ToString());  // Map enum to string
         }
     }
 }

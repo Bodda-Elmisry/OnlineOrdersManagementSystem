@@ -19,6 +19,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
     internal class OrderItemRepository : IOrderItemRepository
     {
         private readonly AppDbContext context;
+        private readonly IMapper mapper;
         private readonly AppSettingDTO appSettings;
 
         public OrderItemRepository(AppDbContext context,
@@ -26,6 +27,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
                                    IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
 
@@ -73,11 +75,12 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             //                .Take(pagesize)
             //                .ToListAsync();
 
-            return await query.ProjectToType<OrderItemResultDTO>()
-                .OrderBy(i => i.ProductName)
+            var items = await query.OrderBy(i => i.Product.Name)
                 .Skip((pagenumber - 1) * pagesize)
                 .Take(pagesize)
                 .ToListAsync();
+
+            return mapper.Map<List<OrderItemResultDTO>>(items);
 
 
         }

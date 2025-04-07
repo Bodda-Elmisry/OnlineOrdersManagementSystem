@@ -17,7 +17,7 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations.sal
 
             builder.HasKey(x => x.Id);
 
-            builder.HasOne<Order>()
+            builder.HasOne(h=> h.Order)
                 .WithMany()
                 .HasForeignKey(x => x.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
