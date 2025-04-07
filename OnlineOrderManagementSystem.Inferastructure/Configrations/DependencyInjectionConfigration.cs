@@ -29,6 +29,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         {
             services.AddScoped<IProductRepoistory, ProductRepoistory>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
         }
 

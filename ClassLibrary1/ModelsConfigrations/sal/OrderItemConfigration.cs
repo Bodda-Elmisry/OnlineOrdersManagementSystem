@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OnlineOrderManagementSystem.Domain.Enums;
 using OnlineOrderManagementSystem.Domain.Models.sal;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,12 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations.sal
 
             builder.HasKey(oi => new { oi.OrderId, oi.ProductId });
 
-            builder.HasOne<Order>()
+            builder.HasOne(oi=> oi.Order)
                 .WithMany()
                 .HasForeignKey(oi => oi.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne<Product>()
+            builder.HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
@@ -31,6 +32,7 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations.sal
                 .IsRequired();
 
             builder.Property(oi => oi.Subtotal)
+                .HasPrecision((int)PropsLengthEnum.pricePercision, (int)PropsLengthEnum.priceScale)
                 .IsRequired();
 
         }

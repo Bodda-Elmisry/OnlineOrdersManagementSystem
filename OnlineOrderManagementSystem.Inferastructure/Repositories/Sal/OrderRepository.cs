@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OnlineOrderManagementSystem.Domain.DTOs.Custom;
 using OnlineOrderManagementSystem.Domain.DTOs.Sel;
@@ -18,12 +20,15 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
     internal class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext context;
+        private readonly IMapper mapper;
         private readonly AppSettingDTO appSettings;
 
         public OrderRepository(AppDbContext context,
-                                                IOptions<AppSettingDTO> appSettings)
+                               IOptions<AppSettingDTO> appSettings,
+                               IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
             this.appSettings = appSettings.Value;
         }
 
@@ -34,8 +39,8 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
 
         public async Task DeleteOrderAsync(int orderId)
         {
-            var order = await GetOrderByIdAsync(orderId);
-            if(order == null)
+            var order = await context.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            if (order == null)
             {
                 return;
             }
@@ -56,16 +61,22 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             query = dto.orderDateMax != null ? query.Where(o => o.OrderDate <= dto.orderDateMax.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59)) : query;
             query = dto.status != null ? query.Where(o => o.Status == dto.status) : query;
 
-            return await query.Select(o=> new OrderResultDTO(
-                                                o.Id,
-                                                o.CustomerId,
-                                                o.Customer.Name,
-                                                o.OrderDate,
-                                                OrderStatusEnumHelper.GetDescription(o.Status)
-                                                ))
-                            .Skip((pagenumber - 1) * pagesize)
-                            .Take(pagesize)
-                            .ToListAsync();
+            //return await query.Select(o=> new OrderResultDTO(
+            //                                    o.Id,
+            //                                    o.CustomerId,
+            //                                    o.Customer.Name,
+            //                                    o.OrderDate,
+            //                                    OrderStatusEnumHelper.GetDescription(o.Status)
+            //                                    ))
+            //                .Skip((pagenumber - 1) * pagesize)
+            //                .Take(pagesize)
+            //                .ToListAsync();
+
+            return await query.ProjectToType<OrderResultDTO>()
+                .OrderBy(o=> o.OrderDate)
+                .Skip((pagenumber - 1) * pagesize)
+                .Take(pagesize)
+                .ToListAsync();
 
 
         }
@@ -77,13 +88,14 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             {
                 return null;
             }
-            return new OrderResultDTO(
-                order.Id,
-                order.CustomerId,
-                order.Customer.Name,
-                order.OrderDate,
-                OrderStatusEnumHelper.GetDescription(order.Status)
-                );
+            //return new OrderResultDTO(
+            //    order.Id,
+            //    order.CustomerId,
+            //    order.Customer.Name,
+            //    order.OrderDate,
+            //    OrderStatusEnumHelper.GetDescription(order.Status)
+            //    );
+            return mapper.Map<OrderResultDTO>(order);
         }
 
         public void UpdateOrderAsync(Order order)

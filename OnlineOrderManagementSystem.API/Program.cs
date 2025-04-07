@@ -1,5 +1,8 @@
+using Mapster;
+using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using OnlineOrderManagementSystem.Domain.DTOs.Custom;
+using OnlineOrderManagementSystem.Domain.ModelsConfigrations;
 using OnlineOrderManagementSystem.Inferastructure.Configrations;
 using OnlineOrderManagementSystem.Inferastructure.Data;
 
@@ -22,10 +25,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<AppSettingDTO>(builder.Configuration.GetSection("AppSettings"));
 
-
 DependencyInjectionConfigration.ConfigerRepos(builder.Services);
 DependencyInjectionConfigration.ConfigerServices(builder.Services);
 DependencyInjectionConfigration.ConfigerUOWs(builder.Services);
+
+builder.Services.AddSingleton(TypeAdapterConfig.GlobalSettings);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+
+MapsterConfig.RegisterMappings();
 
 
 var app = builder.Build();
