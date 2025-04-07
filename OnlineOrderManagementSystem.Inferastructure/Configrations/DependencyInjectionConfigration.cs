@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Cust;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Sal;
+using OnlineOrderManagementSystem.Inferastructure.UnitOfWork;
 using OnlineOrderManagementSystem.Repository.IRepository.Cust;
 using OnlineOrderManagementSystem.Repository.IRepository.Sal;
+using OnlineOrderManagementSystem.Repository.IUnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +51,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
 
         private static void ConfigerSalUOWs(IServiceCollection services)
         {
+            services.AddScoped<IOrderUnitOfWork, OrderUnitOfWork>();
 
         }
 
