@@ -10,8 +10,6 @@ namespace OnlineOrderManagementSystem.Domain.DTOs.Sel
     public class AddOrderDTO
     {
         public long CustomerId { get; set; }
-        public DateTime OrderDate { get; set; }
-        public OrderStatusEnum Status { get; set; }
         public IEnumerable<AddOrderItemDTO> Items { get; set; }
     }
 }

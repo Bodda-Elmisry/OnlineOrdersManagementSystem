@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineOrderManagementSystem.Domain.Models.sal
 {
-    public class OrderItem
+    public class OrderItem : BaseModel
     {
         public long OrderId { get; set; }
         public long ProductId { get; set; }

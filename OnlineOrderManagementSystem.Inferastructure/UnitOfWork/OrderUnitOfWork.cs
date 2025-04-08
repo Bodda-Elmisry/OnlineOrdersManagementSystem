@@ -1,17 +1,22 @@
 ﻿using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using OnlineOrderManagementSystem.Domain.DTOs.Custom;
 using OnlineOrderManagementSystem.Domain.DTOs.Sel;
 using OnlineOrderManagementSystem.Domain.Models.sal;
 using OnlineOrderManagementSystem.Inferastructure.Data;
+using OnlineOrderManagementSystem.Inferastructure.Repositories;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Sal;
+using OnlineOrderManagementSystem.Repository.IRepository;
 using OnlineOrderManagementSystem.Repository.IRepository.Sal;
 using OnlineOrderManagementSystem.Repository.IUnitOfWork;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OnlineOrderManagementSystem.Inferastructure.UnitOfWork
@@ -19,100 +24,108 @@ namespace OnlineOrderManagementSystem.Inferastructure.UnitOfWork
     internal class OrderUnitOfWork : IOrderUnitOfWork
     {
         private readonly AppDbContext context;
-        private readonly IOptions<AppSettingDTO> appSettings;
-        private readonly IMapper mapper;
+        private IDbContextTransaction? _dbContextTransaction;
+        //private readonly IOptions<AppSettingDTO> appSettings;
+        //private readonly IMapper mapper;
+        //private IOrderRepository orderRepository;
+        //private IOrderItemRepository orderItemRepository;
+        //private IOrderStatusHistoryRepository orderStatusHistoryRepository;
+        //private IProductRepoistory productRepoistory;
+        private Hashtable? _repositories;
 
-        public OrderUnitOfWork(AppDbContext context,
-                               IOptions<AppSettingDTO> appSettings,
-                               IMapper mapper)
+        //public OrderUnitOfWork(AppDbContext context,
+        //                       IOptions<AppSettingDTO> appSettings,
+        //                       IMapper mapper)
+        public OrderUnitOfWork(AppDbContext context)
         {
             this.context = context;
-            this.appSettings = appSettings;
-            this.mapper = mapper;
+            //this.appSettings = appSettings;
+            //this.mapper = mapper;
         }
 
-        public IOrderRepository OrderRepository => new OrderRepository(context, appSettings, mapper);
+        public TRepository Repository<TEntity, TRepository>()
+            where TEntity : class
+            where TRepository : IBaseRepository<TEntity>
+        {
+            _repositories ??= new Hashtable();
 
-        public IOrderItemRepository OrderItemRepository => new OrderItemRepository(context, appSettings, mapper);
+            string type = $"{typeof(TEntity).Name}_{typeof(TRepository).Name}";
 
-        public IOrderStatusHistoryRepository OrderStatusHistoryRepository => new OrderStatusHistoryRepository(context, mapper);
+            if (!_repositories.ContainsKey(type))
+            {
+                object? repositoryInstance;
 
+                Type repositoryType = typeof(TRepository);
+
+                repositoryInstance = repositoryType.IsGenericTypeDefinition
+                    ? Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), context)
+                    : Activator.CreateInstance(repositoryType, context);
+                _repositories.Add(type, repositoryInstance);
+            }
+
+            return (TRepository)_repositories[type]!;
+        }
+
+        //public IOrderRepository OrderRepository => orderRepository ??= new OrderRepository(context, appSettings, mapper);
+
+        //public IOrderItemRepository OrderItemRepository => orderItemRepository ??= new OrderItemRepository(context, appSettings, mapper);
+
+        //public IOrderStatusHistoryRepository OrderStatusHistoryRepository => orderStatusHistoryRepository ??= new OrderStatusHistoryRepository(context, mapper);
+
+        //public IProductRepoistory ProductRepoistory => productRepoistory ??= new ProductRepoistory(context, appSettings);
 
         public async Task<int> CompleteAsync()
         {
             return await context.SaveChangesAsync();
         }
 
-        public void Dispose()
+        public async Task BeginTransactionAsync()
         {
-            context.Dispose();
+            _dbContextTransaction = await context.Database.BeginTransactionAsync();
         }
 
-        public async Task<IEnumerable<OrderItemsListResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto)
+        public async Task CommitTransactionAsync()
         {
-            int pagesize = this.appSettings.Value.PageSize != null ? this.appSettings.Value.PageSize.Value : 30;
-
-            var pagenumber = dto.pageNumber > 0 ? dto.pageNumber : 1;
-
-            var query = context.Orders
-                .Include(o => o.OrderItems)
-                .ThenInclude(oi => oi.Product)
-                .AsQueryable();
-
-            query = dto.customerId != null ? query.Where(o => o.CustomerId == dto.customerId) : query;
-            query = dto.customerName != null ? query.Where(o => o.Customer.Name.Contains(dto.customerName)) : query;
-            query = dto.orderDateMin != null ? query.Where(o => o.OrderDate >= dto.orderDateMin.Value.Date) : query;
-            query = dto.orderDateMax != null ? query.Where(o => o.OrderDate <= dto.orderDateMax.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59)) : query;
-            query = dto.status != null ? query.Where(o => o.Status == dto.status) : query;
-
-            var result = await query.Select(o => new OrderItemsListResultDTO
+            if (_dbContextTransaction == null)
             {
-                Id = o.Id,
-                CustomerId = o.CustomerId,
-                CustomerName = o.Customer.Name,
-                OrderDate = o.OrderDate,
-                Status = o.Status.ToString(),
-                Items = o.OrderItems.Select(oi => new OrderItemResultDTO
-                {
-                    ProductId = oi.ProductId,
-                    ProductName = oi.Product.Name,
-                    OrderId = oi.OrderId,
-                    OrderDate = oi.Order.OrderDate,
-                    Quantity = oi.Quantity,
-                    Subtotal = oi.Subtotal
-                }).ToList()
-            }).OrderBy(o => o.OrderDate)
-                .Skip((pagenumber - 1) * pagesize)
-                .Take(pagesize)
-                .ToListAsync();
+                throw new InvalidOperationException("No transaction started.");
+            }
 
-            return result;
+            try
+            {
+                _ = await CompleteAsync();
+                await _dbContextTransaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                await RollbackTransactionAsync();
+                throw new InvalidOperationException("Transaction commit failed.", ex);
+            }
         }
 
-        public async Task<OrderItemsListResultDTO?> GetOrderByIdAsync(long orderId)
+        public async Task RollbackTransactionAsync()
         {
-            var result = await context.Orders
-                .Include(o => o.OrderItems)
-                .ThenInclude(oi => oi.Product)
-                .Select(o => new OrderItemsListResultDTO
-                {
-                    Id = o.Id,
-                    CustomerId = o.CustomerId,
-                    CustomerName = o.Customer.Name,
-                    OrderDate = o.OrderDate,
-                    Status = o.Status.ToString(),
-                    Items = o.OrderItems.Select(oi => new OrderItemResultDTO
-                    {
-                        ProductId = oi.ProductId,
-                        ProductName = oi.Product.Name,
-                        OrderId = oi.OrderId,
-                        OrderDate = oi.Order.OrderDate,
-                        Quantity = oi.Quantity,
-                        Subtotal = oi.Subtotal
-                    }).ToList()
-                }).FirstOrDefaultAsync(o=> o.Id == orderId);
+            if (_dbContextTransaction == null)
+            {
+                throw new InvalidOperationException("No transaction started.");
+            }
 
-            return result;
+            try
+            {
+                await _dbContextTransaction.RollbackAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Transaction rollback failed.", ex);
+            }
+            finally
+            {
+                _dbContextTransaction.Dispose();
+                _dbContextTransaction = null;
+            }
         }
+        
+
+        
     }
 }

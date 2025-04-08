@@ -15,19 +15,5 @@ namespace OnlineOrderManagementSystem.Domain.Enums
         Canceled = 5,
     }
 
-    public class OrderStatusEnumHelper
-    {
-        public static string GetDescription(OrderStatusEnum status)
-        {
-            return status switch
-            {
-                OrderStatusEnum.Pending => "Pending",
-                OrderStatusEnum.Processing => "Processing",
-                OrderStatusEnum.Shipped => "Shipped",
-                OrderStatusEnum.Delivered => "Delivered",
-                OrderStatusEnum.Canceled => "Canceled",
-                _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
-            };
-        }
-    }
+    
 }

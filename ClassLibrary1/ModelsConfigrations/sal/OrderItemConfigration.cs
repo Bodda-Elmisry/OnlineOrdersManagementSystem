@@ -16,11 +16,14 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations.sal
         {
             builder.ToTable("OrderItems", schema: "sal");
 
-            builder.HasKey(oi => new { oi.OrderId, oi.ProductId });
+            builder.HasKey(oi => oi.Id);
 
-            builder.HasOne(oi=> oi.Order)
-                .WithMany()
-                .HasForeignKey(oi => oi.OrderId)
+            builder.HasIndex(builder => new { builder.OrderId, builder.ProductId })
+                .IsUnique();
+
+            builder.HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems) // Indicate the navigation property in Order
+                .HasForeignKey(oi => oi.OrderId) // Explicitly specify the foreign key
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(oi => oi.Product)

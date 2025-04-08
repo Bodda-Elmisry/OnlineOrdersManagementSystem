@@ -1,4 +1,6 @@
 ﻿using OnlineOrderManagementSystem.Domain.DTOs.Sel;
+using OnlineOrderManagementSystem.Domain.Models.sal;
+using OnlineOrderManagementSystem.Repository.IRepository;
 using OnlineOrderManagementSystem.Repository.IRepository.Sal;
 using System;
 using System.Collections.Generic;
@@ -10,11 +12,18 @@ namespace OnlineOrderManagementSystem.Repository.IUnitOfWork
 {
     public interface IOrderUnitOfWork
     {
-        IOrderRepository OrderRepository { get; }
-        IOrderItemRepository OrderItemRepository { get; }
-        IOrderStatusHistoryRepository OrderStatusHistoryRepository { get; }
-        Task<IEnumerable<OrderItemsListResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto);
-        Task<OrderItemsListResultDTO?> GetOrderByIdAsync(long orderId);
+        //IOrderRepository OrderRepository { get; }
+        //IOrderItemRepository OrderItemRepository { get; }
+        //IOrderStatusHistoryRepository OrderStatusHistoryRepository { get; }
+        //IProductRepoistory ProductRepoistory { get; }
+        TRepository Repository<TEntity, TRepository>()
+            where TEntity : class
+            where TRepository : IBaseRepository<TEntity>;
+
+        Task BeginTransactionAsync();
+        Task CommitTransactionAsync();
+        Task RollbackTransactionAsync();
+
         Task<int> CompleteAsync();
     }
 }

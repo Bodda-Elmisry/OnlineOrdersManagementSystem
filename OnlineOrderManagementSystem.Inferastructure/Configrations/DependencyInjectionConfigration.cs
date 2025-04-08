@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OnlineOrderManagementSystem.Inferastructure.Repositories;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Cust;
 using OnlineOrderManagementSystem.Inferastructure.Repositories.Sal;
 using OnlineOrderManagementSystem.Inferastructure.Services.Cust;
 using OnlineOrderManagementSystem.Inferastructure.Services.Sal;
 using OnlineOrderManagementSystem.Inferastructure.UnitOfWork;
+using OnlineOrderManagementSystem.Repository.IRepository;
 using OnlineOrderManagementSystem.Repository.IRepository.Cust;
 using OnlineOrderManagementSystem.Repository.IRepository.Sal;
 using OnlineOrderManagementSystem.Repository.IServices.Cust;
@@ -34,9 +36,6 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         private static void ConfigerSalRepos(IServiceCollection services)
         {
             services.AddScoped<IProductRepoistory, ProductRepoistory>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
-            services.AddScoped<IOrderStatusHistoryRepository, OrderStatusHistoryRepository>();
 
         }
 
@@ -64,6 +63,8 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         #region Services
         public static void ConfigerServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
             ConfigerCustServices(services);
             ConfigerSalServices(services);
         }

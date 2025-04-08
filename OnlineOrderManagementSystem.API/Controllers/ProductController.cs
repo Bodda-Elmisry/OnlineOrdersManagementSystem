@@ -21,7 +21,7 @@ namespace OnlineOrderManagementSystem.API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("product/{Id}")]
+        [HttpGet("products/{Id}")]
         public async Task<IActionResult> GetProduct(long Id)
         {
             var product = await _productService.GetProductByIdAsync(Id);

@@ -11,6 +11,9 @@ namespace OnlineOrderManagementSystem.Domain.DTOs.Sel
         public long Id { get; set; }
         public long CustomerId { get; set; }
         public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerPhone { get; set; }
+        public string CustomerAddress { get; set; }
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
         public IEnumerable<OrderItemResultDTO> Items { get; set; }

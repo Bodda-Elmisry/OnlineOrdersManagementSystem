@@ -74,5 +74,11 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             context.Products.Update(product);
             return await context.SaveChangesAsync() > 0;
         }
+
+        public async Task UpdateProductQuantityAsync(Product product)
+        {
+            context.Update(product);
+
+        }
     }
 }

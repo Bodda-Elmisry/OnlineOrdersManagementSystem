@@ -14,6 +14,7 @@ namespace OnlineOrderManagementSystem.Repository.IRepository.Sal
     {
         Task<bool> AddProductAsync(Product product);
         Task<bool> UpdateProductAsync(Product product);
+        Task UpdateProductQuantityAsync(Product product);
         Task<bool> DeleteProductAsync(long productId);
         Task<Product?> GetProductByIdAsync(long productId);
         Task<IEnumerable<Product>> GetAllProductsAsync(GetProductsDTO dto);

@@ -22,7 +22,7 @@ namespace OnlineOrderManagementSystem.API.Controllers
             return Ok(customers);
         }
 
-        [HttpGet("customer/{Id}")]
+        [HttpGet("customers/{Id}")]
         public async Task<IActionResult> GetCustomer(long Id)
         {
             var customers = await _customerService.GetCustomerByIdAsync(Id);
@@ -30,7 +30,7 @@ namespace OnlineOrderManagementSystem.API.Controllers
         }
 
         [HttpPost("customers")]
-        public async Task<IActionResult> AddCustomer(AddCustomerDTO dto)
+        public async Task<IActionResult> AddCustomer([FromBody] AddCustomerDTO dto)
         {
             var getCustomerDTO = new GetCustomersDTO(
                 Name: null,

@@ -80,6 +80,12 @@ namespace OnlineOrderManagementSystem.Inferastructure.Migrations
 
             modelBuilder.Entity("OnlineOrderManagementSystem.Domain.Models.sal.OrderItem", b =>
                 {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
@@ -93,9 +99,12 @@ namespace OnlineOrderManagementSystem.Inferastructure.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("OrderId", "ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("OrderId", "ProductId")
+                        .IsUnique();
 
                     b.ToTable("OrderItems", "sal");
                 });
@@ -167,7 +176,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Migrations
             modelBuilder.Entity("OnlineOrderManagementSystem.Domain.Models.sal.OrderItem", b =>
                 {
                     b.HasOne("OnlineOrderManagementSystem.Domain.Models.sal.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -185,11 +194,18 @@ namespace OnlineOrderManagementSystem.Inferastructure.Migrations
 
             modelBuilder.Entity("OnlineOrderManagementSystem.Domain.Models.sal.OrderStatusHistory", b =>
                 {
-                    b.HasOne("OnlineOrderManagementSystem.Domain.Models.sal.Order", null)
+                    b.HasOne("OnlineOrderManagementSystem.Domain.Models.sal.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("OnlineOrderManagementSystem.Domain.Models.sal.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

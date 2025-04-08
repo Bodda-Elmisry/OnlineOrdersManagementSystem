@@ -9,7 +9,7 @@ namespace OnlineOrderManagementSystem.Repository.IServices.Sal
 {
     public interface IOrderService
     {
-        Task<bool> CreateOrderAsync(AddOrderDTO dto);
+        Task<string?> CreateOrderAsync(AddOrderDTO dto);
 
         Task<bool> UpdateOrderStatusAsync(long orderId);
 

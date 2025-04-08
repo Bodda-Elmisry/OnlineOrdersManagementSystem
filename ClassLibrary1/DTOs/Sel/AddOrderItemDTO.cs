@@ -10,6 +10,6 @@ namespace OnlineOrderManagementSystem.Domain.DTOs.Sel
     {
         public long ProductId { get; set; }
         public int Quantity { get; set; }
-        public decimal Subtotal { get; set; }
+        //public decimal Subtotal { get; set; }
     }
 }
