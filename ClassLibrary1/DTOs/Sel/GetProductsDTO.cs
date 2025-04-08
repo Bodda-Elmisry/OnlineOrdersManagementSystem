@@ -12,6 +12,7 @@ namespace OnlineOrderManagementSystem.Domain.DTOs.Sel
         decimal? minPrice,
         decimal? maxPrice,
         int? minQuantity,
-        int? maxQuantity
+        int? maxQuantity,
+        int pageNumber
         );
 }

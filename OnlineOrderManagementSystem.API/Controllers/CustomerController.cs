@@ -32,6 +32,20 @@ namespace OnlineOrderManagementSystem.API.Controllers
         [HttpPost("customers")]
         public async Task<IActionResult> AddCustomer(AddCustomerDTO dto)
         {
+            var getCustomerDTO = new GetCustomersDTO(
+                Name: null,
+                Email: null,
+                Address: null,
+                PhoneNumber : dto.PhoneNumber, 
+                PageNumber:1);
+
+            var customer = await _customerService.GetAllCustomersAsync(getCustomerDTO);
+
+            if(customer.Count() > 0)
+            {
+                return BadRequest("Customer with this phone number already exists");
+            }
+
             var added = await _customerService.AddCustomerAsync(dto);
             return Ok(added);
         }

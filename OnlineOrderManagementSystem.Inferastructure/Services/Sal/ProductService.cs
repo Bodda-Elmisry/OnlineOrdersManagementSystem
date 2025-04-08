@@ -28,7 +28,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Services.Sal
             return await productRepoistory.AddProductAsync(newProduct);
         }
 
-        public async Task<bool> DeleteProductAsync(int productId)
+        public async Task<bool> DeleteProductAsync(long productId)
         {
             return await productRepoistory.DeleteProductAsync(productId);
         }
@@ -38,7 +38,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Services.Sal
             return await productRepoistory.GetAllProductsAsync(dto);
         }
 
-        public async Task<Product?> GetProductByIdAsync(int productId)
+        public async Task<Product?> GetProductByIdAsync(long productId)
         {
             return await productRepoistory.GetProductByIdAsync(productId);
         }
