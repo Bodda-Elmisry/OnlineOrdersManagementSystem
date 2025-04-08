@@ -76,6 +76,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Configrations
         private static void ConfigerSalServices(IServiceCollection services)
         {
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
 
         }
 

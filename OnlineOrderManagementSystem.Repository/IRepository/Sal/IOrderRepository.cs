@@ -12,9 +12,10 @@ namespace OnlineOrderManagementSystem.Repository.IRepository.Sal
     {
         // Define methods for order management
         Task<IEnumerable<OrderResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto);
-        Task<OrderResultDTO?> GetOrderByIdAsync(int orderId);
+        Task<OrderResultDTO?> GetOrderViewByIdAsync(long orderId);
+        Task<Order?> GetOrderByIdAsync(long orderId);
         void CreateOrderAsync(Order order);
         void UpdateOrderAsync(Order order);
-        Task DeleteOrderAsync(int orderId);
+        Task DeleteOrderAsync(long orderId);
     }
 }

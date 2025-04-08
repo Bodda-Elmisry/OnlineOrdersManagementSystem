@@ -28,7 +28,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Services.Cust
             return await customerRepository.AddCustomerAsync(newCustomer);
         }
 
-        public async Task<bool> DeleteCustomerAsync(int customerId)
+        public async Task<bool> DeleteCustomerAsync(long customerId)
         {
             return await customerRepository.DeleteCustomerAsync(customerId);
         }
@@ -38,7 +38,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Services.Cust
             return await customerRepository.GetAllCustomersAsync(dto);
         }
 
-        public async Task<Customer?> GetCustomerByIdAsync(int customerId)
+        public async Task<Customer?> GetCustomerByIdAsync(long customerId)
         {
             return await customerRepository.GetCustomerByIdAsync(customerId);
         }

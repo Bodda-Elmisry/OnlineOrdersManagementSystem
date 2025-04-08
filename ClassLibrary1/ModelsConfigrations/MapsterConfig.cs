@@ -36,6 +36,9 @@ namespace OnlineOrderManagementSystem.Domain.ModelsConfigrations
 
             TypeAdapterConfig<AddProductDTO, Product>
                 .NewConfig();
+
+            TypeAdapterConfig<AddOrderItemDTO, OrderItem>
+                .NewConfig();
         }
     }
 }

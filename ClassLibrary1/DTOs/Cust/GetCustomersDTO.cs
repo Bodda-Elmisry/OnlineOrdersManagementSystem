@@ -10,6 +10,7 @@ namespace OnlineOrderManagementSystem.Domain.DTOs.Cust
         string Name,
         string Email,
         string Address,
-        string PhoneNumber
+        string PhoneNumber,
+        int PageNumber
         );
 }

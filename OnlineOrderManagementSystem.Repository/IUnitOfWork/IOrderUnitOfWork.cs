@@ -1,4 +1,5 @@
-﻿using OnlineOrderManagementSystem.Repository.IRepository.Sal;
+﻿using OnlineOrderManagementSystem.Domain.DTOs.Sel;
+using OnlineOrderManagementSystem.Repository.IRepository.Sal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace OnlineOrderManagementSystem.Repository.IUnitOfWork
         IOrderRepository OrderRepository { get; }
         IOrderItemRepository OrderItemRepository { get; }
         IOrderStatusHistoryRepository OrderStatusHistoryRepository { get; }
+        Task<IEnumerable<OrderItemsListResultDTO>> GetAllOrdersAsync(GetOrdersDTO dto);
+        Task<OrderItemsListResultDTO?> GetOrderByIdAsync(long orderId);
         Task<int> CompleteAsync();
     }
 }

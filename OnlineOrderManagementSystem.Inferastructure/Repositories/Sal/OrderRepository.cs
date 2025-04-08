@@ -37,7 +37,7 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
             context.Orders.Add(order);
         }
 
-        public async Task DeleteOrderAsync(int orderId)
+        public async Task DeleteOrderAsync(long orderId)
         {
             var order = await context.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
             if (order == null)
@@ -82,10 +82,27 @@ namespace OnlineOrderManagementSystem.Inferastructure.Repositories.Sal
 
         }
 
-        public async Task<OrderResultDTO?> GetOrderByIdAsync(int orderId)
+        public async Task<Order?> GetOrderByIdAsync(long orderId)
         {
             var order = await context.Orders.FirstOrDefaultAsync(o=> o.Id == orderId);
             if(order == null)
+            {
+                return null;
+            }
+            //return new OrderResultDTO(
+            //    order.Id,
+            //    order.CustomerId,
+            //    order.Customer.Name,
+            //    order.OrderDate,
+            //    OrderStatusEnumHelper.GetDescription(order.Status)
+            //    );
+            return order;
+        }
+
+        public async Task<OrderResultDTO?> GetOrderViewByIdAsync(long orderId)
+        {
+            var order = await context.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            if (order == null)
             {
                 return null;
             }

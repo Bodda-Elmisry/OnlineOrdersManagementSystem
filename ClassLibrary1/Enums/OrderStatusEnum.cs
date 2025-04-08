@@ -8,11 +8,11 @@ namespace OnlineOrderManagementSystem.Domain.Enums
 {
     public enum OrderStatusEnum
     {
-        orderd = 1,
-        inPackaging = 2,
-        inShipping = 3,
-        delevered = 4,
-        canceled = 5,
+        Pending = 1,
+        Processing = 2,
+        Shipped = 3,
+        Delivered = 4,
+        Canceled = 5,
     }
 
     public class OrderStatusEnumHelper
@@ -21,11 +21,11 @@ namespace OnlineOrderManagementSystem.Domain.Enums
         {
             return status switch
             {
-                OrderStatusEnum.orderd => "Ordered",
-                OrderStatusEnum.inPackaging => "In Packaging",
-                OrderStatusEnum.inShipping => "In Shipping",
-                OrderStatusEnum.delevered => "Delivered",
-                OrderStatusEnum.canceled => "Canceled",
+                OrderStatusEnum.Pending => "Pending",
+                OrderStatusEnum.Processing => "Processing",
+                OrderStatusEnum.Shipped => "Shipped",
+                OrderStatusEnum.Delivered => "Delivered",
+                OrderStatusEnum.Canceled => "Canceled",
                 _ => throw new ArgumentOutOfRangeException(nameof(status), status, null)
             };
         }

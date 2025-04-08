@@ -12,8 +12,8 @@ namespace OnlineOrderManagementSystem.Repository.IRepository.Cust
     {
         Task<bool> AddCustomerAsync(Customer customer);
         Task<bool> UpdateCustomerAsync(Customer customer);
-        Task<bool> DeleteCustomerAsync(int customerId);
-        Task<Customer?> GetCustomerByIdAsync(int customerId);
+        Task<bool> DeleteCustomerAsync(long customerId);
+        Task<Customer?> GetCustomerByIdAsync(long customerId);
         Task<IEnumerable<Customer>> GetAllCustomersAsync(GetCustomersDTO dto);
     }
 }
